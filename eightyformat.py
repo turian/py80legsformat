@@ -16,8 +16,8 @@ def read(file):
 
     l = "not EOF"
     data = []
+    l = file.read(1*4)
     while l != "":
-        l = file.read(1*4)
         (URLSIZE,) = struct.unpack("i", l)
         url = file.read(URLSIZE).decode("utf-8")
 #        print url.encode("utf-8")
@@ -28,6 +28,7 @@ def read(file):
         yield (url, data)
 #        print data
 #        print data.decode("utf-8")
+        l = file.read(1*4)
 
 if __name__ == "__main__":
     for url, data in read(sys.stdin):
