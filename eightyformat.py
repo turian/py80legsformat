@@ -1,6 +1,8 @@
 #!/usr/bin/python
 
 import sys, struct
+import zipfile
+from cStringIO import StringIO
 
 def read(file):
     """
@@ -30,9 +32,26 @@ def read(file):
 #        print data.decode("utf-8")
         l = file.read(1*4)
 
+def readzip(zfilename):
+    """
+    Read a zipfile and process all .80 files therein.
+    """
+    zfile = zipfile.ZipFile(zfilename, "r")
+    for info in zfile.infolist():
+        fname = info.filename
+        if fname.endswith(".80"):
+            data = zfile.read(fname)
+            for r in read(StringIO(data)):
+                yield r
+
+
 if __name__ == "__main__":
+    i = 0
     for url, data in read(sys.stdin):
         print url
+        i += 1
+        f = open("in3/%d.html" % i, "w")
+        f.write(data)
 #        print url, data
 #        print url, len(data)
 #        print len(data)
