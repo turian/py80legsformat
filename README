@@ -1,5 +1,7 @@
 In Python, read the .80 file format, for 80legs web crawl results.
 
+The URL and data are UTF-8 decoded.
+
 From http://80legs.pbworks.com/Results:
     For people interested in deserializing in other languages, the file format this creates and reads is:
         <classID><versionID><URL-SIZE><URL><DATA-SIZE><DATA>
@@ -7,6 +9,3 @@ From http://80legs.pbworks.com/Results:
         * The last 4 items (<URL-SIZE><URL><DATA-SIZE><DATA>) repeat for each url/data pair.
         * <classID>, <versionID>, <URL-SIZE>, and <DATA-SIZE> are encoded 32-bit integers.
         * The url is encoded using UTF-8.  
-
-ISSUES:
-    * I don't Unicode decode either the URL or the data.

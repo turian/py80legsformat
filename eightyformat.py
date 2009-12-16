@@ -27,6 +27,7 @@ def read(file):
         (DATASIZE,) = struct.unpack("i", l)
 #        print DATASIZE
         data = str(file.read(DATASIZE))
+        data = data.decode("utf-8")
         yield (url, data)
 #        print data
 #        print data.decode("utf-8")
