@@ -52,7 +52,7 @@ if __name__ == "__main__":
         print url
         i += 1
         f = open("in3/%d.html" % i, "w")
-        f.write(data)
+        f.write(data.encode("utf-8"))
 #        print url, data
 #        print url, len(data)
 #        print len(data)
